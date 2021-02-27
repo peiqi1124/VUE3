@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app">
+			<base-button @show="hahhaha"></base-button>
+		</div>
+
+		<script>
+			const beta = {
+				template: `
+          <button @click="showMeag">发送</button>
+        `,
+				methods: {
+					showMeag() {
+						let i = 123
+						this.$emit('show', i)
+					},
+				},
+				emits: {
+					show: i => {
+						console.log(i)
+						return true
+					},
+				},
+			}
+
+			const app = Vue.createApp({
+				components: {
+					'base-button': beta,
+				},
+				methods: {
+					hahhaha() {
+						console.log(1)
+					},
+				},
+			})
+
+			app.mount('#app')
+		</script>
+	</body>
+</html>

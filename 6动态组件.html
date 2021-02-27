@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>peiqi-slot</title>
+		<script src="https://unpkg.com/vue@next"></script>
+	</head>
+	<body>
+		<div id="app"></div>
+
+		<script>
+			const p1 = {
+				template: `
+			     <p>我是1</p>
+			     `,
+			}
+			const p2 = {
+				template: `
+			     <p>我是2</p>
+			     `,
+			}
+			const p3 = {
+				template: `
+			     <p>我是3</p>
+			     `,
+			}
+
+			let app = Vue.createApp({
+				data() {
+					return {
+						names: 'base-p1',
+					}
+				},
+				template: `
+        <div>
+        <button @click="setIndex(1)">点击1</button>
+        <button @click="setIndex(2)">点击2</button>
+        <button @click="setIndex(3)">点击3</button>
+          <component v-bind:is="names" class="tab"></component>
+        </div>
+        
+        `,
+				components: {
+					'base-p1': p1,
+					'base-p2': p2,
+					'base-p3': p3,
+				},
+				methods: {
+					setIndex(index) {
+						switch (index) {
+							case 1: {
+								this.names = 'base-p1'
+								break
+							}
+							case 2: {
+								this.names = 'base-p2'
+								break
+							}
+							case 3: {
+								this.names = 'base-p3'
+								break
+							}
+						}
+					},
+				},
+			})
+
+			app.mount('#app')
+		</script>
+	</body>
+</html>

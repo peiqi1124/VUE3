@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@next"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="counter">
+			<todo-list>
+				<template v-slot:header>
+					<p>我是头部</p>
+				</template>
+				<template v-slot:main>
+					<p>我是身体</p>
+				</template>
+				<template v-slot:footer>
+					<p>我是页脚</p>
+				</template>
+			</todo-list>
+		</div>
+
+		<script>
+			// 创建 Vue 应用
+			const app = Vue.createApp({})
+
+			app.component('todo-list', {
+				template: `
+								<div>
+									<header>
+										<slot name="header">默认内容</slot>
+									</header>
+									<main>
+										<slot name="main">默认内容</slot>
+									</main>
+									<footer>
+										<slot name="footer">默认内容</slot>
+									</footer>
+								</div>
+  						`,
+			})
+
+			// 挂载 Vue 应用
+			app.mount('#counter')
+		</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>peiqi-slot</title>
+		<script src="https://unpkg.com/vue@next"></script>
+
+		<style>
+			.base-button {
+				cursor: pointer;
+				outline: none;
+				border: none;
+				color: white;
+				width: 80px;
+				height: 35px;
+				border-radius: 5px;
+				background-color: #0d98ee;
+				box-shadow: 0px 1px 1px 1px #206c9b;
+				text-shadow: 0px 2px 4px rgb(58 56 56);
+				font-size: 15px;
+			}
+			.base-button:active {
+				background-color: #70c2f5;
+				box-shadow: 0px 1px 1px 1px #2f719b;
+				text-shadow: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<base-button>点击</base-button>
+			<base-button>好玩</base-button>
+			<base-button data-name="ahhahaha">提交</base-button>
+		</div>
+
+		<script>
+			const button = {
+				template: `
+        <button class="base-button"><slot></slot></button>
+        `,
+				props: {
+					name: {
+						type: String,
+					},
+				},
+				mounted() {
+					if (this.name) console.log(this.name)
+				},
+			}
+
+			let app = Vue.createApp({
+				components: {
+					'base-button': button,
+				},
+			})
+
+			app.mount('#app')
+		</script>
+	</body>
+</html>
